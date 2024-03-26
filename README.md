@@ -20,3 +20,9 @@ Here is the goal of this project.
 - Work on 99% of devices that have a web browser
 
 - Copyright free.  
+
+--------------------
+
+Future idea's
+
+1) write a python program that contactinates sources into a single html file.  The current 35,000 line file is hard to work with.
