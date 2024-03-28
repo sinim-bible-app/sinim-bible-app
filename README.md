@@ -11,3 +11,8 @@ Single file, web-based, Bible application designed for offline use.
 - Give people the plan of salvation.
 - Educate people on how cell phones are used for tracking.
 - Copyright free.
+
+## Contributing
+
+Thank you for considering contributing to the Sinim Bible App.
+All the information you need to get started is in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
