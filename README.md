@@ -1,28 +1,18 @@
-# sinim
-Single file multi-platform bible
+# Sinim Bible App
 
-Here is the goal of this project.  
+Single file, web-based, Bible application designed for offline use.
 
-- Provide a chinese electronic bible that NEVER uses the internet.  Using the internet could compromise the authorities
+## Project Goals
 
-- Allow people to read and print the whole bible
+- Provide an electronic Bible that **never** uses the Internet (doing so could compromise the user).
+- Allow people to read and print the entire Bible using most devices that have a web browser.
+- Easily transferable with a thumb drive or microSD card.
+- Allows for side loading on a device without any warnings.
+- Give people the plan of salvation.
+- Educate people on how cell phones are used for tracking.
+- Copyright free.
 
-- Allow for remote printing of the bible
+## Contributing
 
-- Easy to copy using a thumb drive
-
-- Allows for side loading on a device without any warmings
-
-- Give people the plan of salvation
-
-- Tell people how cell phones are used for tracking.
-
-- Work on 99% of devices that have a web browser
-
-- Copyright free.  
-
---------------------
-
-Future idea's
-
-1) write a python program that contactinates sources into a single html file.  The current 35,000 line file is hard to work with.
+Thank you for considering contributing to the Sinim Bible App.
+All the information you need to get started is in the [CONTRIBUTING.md](CONTRIBUTING.md) file.

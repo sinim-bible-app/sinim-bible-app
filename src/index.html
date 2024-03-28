@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sinim Bible App</title>
+    </head>
+    <body>
+        <div class="toolbar" id="toolbar">
+            <select id="book-dropdown"></select>
+            <button id="prev-button">◄</button>
+            <input value="1" style="width: 50px !important;" type="text" inputmode="numeric" pattern="[0-9]*"
+                id="chapter-input" />
+            <button id="next-button" justify-content="right">►</button>
+            <button> ℹ️ </button>
+            <button>🖨️</button>
+        </div>
+        <div id="bible-content"></div>
+
+        <div id="highlight-toolbar" style="display: none;">
+            <!-- Buttons without text content -->
+            <button class="highlight-button" data-color="highlightedYellow"></button>
+            <button class="highlight-button" data-color="highlightedGreen"></button>
+            <button class="highlight-button" data-color="highlightedBlue"></button>
+            <button class="highlight-button" data-color="highlightedTransparent"></button>
+            <button class="notes-button" data-color="highlightedTransparent" id="notes-button">
+                <i style="position: relative; top: -4px;">📝</i>
+            </button>
+        </div>
+
+        <div id="notes-modal" class="modal">
+            <div class="modal-content">
+                <div class="toolbar" id="toolbar">
+                    <button id="closeNotes">X</button>
+                    Bible Notes
+                </div>
+                <!-- Your content goes here -->
+                <br>
+                I love this verse.
+            </div>
+        </div>
+        <script type="module" src="index.js"></script>
+    </body>
+</html>
