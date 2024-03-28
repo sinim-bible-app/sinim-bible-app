@@ -1,3 +1,4 @@
+import './app.css';
 import bibleData from './assets/translations/zh/chinese_union_version.json';
 
 // Sample Bible data (replace with actual data)
