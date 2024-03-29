@@ -74,7 +74,7 @@ function selectColor(color) {
     // Hide the toolbar
     const highlightToolbar = document.getElementById("highlight-toolbar");
     if (highlightToolbar) {
-        highlightToolbar.style.display = "none"; // Use style.display to hide the toolbar
+        highlightToolbar.classList.add("hidden");
     }
 }
 
@@ -187,9 +187,9 @@ function populateBibleText(bookIndex, chapterIndex) {
                 // Set the currently selected verse
                 setSelectedVerse(verseNumber - 1);
 
-                // Show the toolbar
                 const highlightToolbar = document.getElementById("highlight-toolbar");
-                highlightToolbar.style.display = "block";
+                highlightToolbar.classList.remove("hidden");
+                highlightToolbar.classList.add("flex");
             });
 
             bibleVersesDiv.appendChild(verseElement);
@@ -239,7 +239,7 @@ function getVerse(bookNumber, chapterNumber, verseNumber) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".highlight-button").forEach(button => {
+    document.querySelectorAll("#highlight-toolbar > button").forEach(button => {
         const bgClass = Array.from(button.classList).find(className => className.startsWith('bg-'));
 
         if (bgClass && ! button.hasAttribute('data-highlight')) {
@@ -267,9 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Hide the highlight toolbar
             const highlightToolbar = document.getElementById("highlight-toolbar");
-            highlightToolbar.style.display = "none";
+            highlightToolbar.classList.add("hidden");
             myBibleApp.selectedVerseNumbers = [];
 
             // You can update cookies or perform other actions here
@@ -346,7 +345,7 @@ function enterFullScreen() {
 
 // Call the function to enter full screen when needed, e.g., on a button click
 // You might want to trigger it based on user interaction, like a button click
-document.getElementById("fullscreen-button").addEventListener("click", enterFullScreen);
+document.getElementById("fullscreen-button")?.addEventListener("click", enterFullScreen);
 
 // Add an event listener to the notes button
 const notesButton = document.getElementById("notes-button");
@@ -360,9 +359,8 @@ if (notesButton) {
             element.style.textDecoration = "none";
         }
 
-        // Add your modal display logic here
         const highlightToolbar = document.getElementById("highlight-toolbar")
-        highlightToolbar.style.display = "none";
+        highlightToolbar.classList.add("hidden");
         // Display the modal
         const modal = document.getElementById("notes-modal");
         if (modal) {
