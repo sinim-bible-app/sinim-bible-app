@@ -39,7 +39,7 @@ function onPageLoad() {
                 if (verseElement && childDict.key === "highlight") {
                     // Apply the highlight color
                     verseElement.classList.add(childDict.value);
-                    verseElement.setAttribute('highlightColor', childDict.value);
+                    verseElement.setAttribute('data-highlight', childDict.value);
                 }
             }
         }
@@ -101,7 +101,7 @@ function updateCookies() {
         const verseId = `verseid${myBibleApp.currentBook}-${myBibleApp.currentChapter}-${verseIndex}`;
         const verseElement = document.getElementById(verseId);
         if (verseElement !== null) {
-            const highlight = verseElement.getAttribute('highlightColor');
+            const highlight = verseElement.getAttribute('data-highlight');
             console.log(verseId + ": " + highlight);
             // Store the highlight color in the parent dictionary
             parentDict[verseId] = { key: 'highlight', value: highlight };
@@ -158,7 +158,7 @@ function populateBibleText(bookIndex, chapterIndex) {
 
             // Add padding to the verse element to increase clickable area
             const trimmedString = removeSpaces(verse);
-            verseElement.innerHTML = `<span class="superscript">${index + 1}</span> ${trimmedString}`;
+            verseElement.innerHTML = `<sup>${index + 1}</sup> ${trimmedString}`;
 
 
             // Add a click event listener to each verse
@@ -228,68 +228,43 @@ function getVerse(bookNumber, chapterNumber, verseNumber) {
     return "Verse not found";
 }
 
-// Add click event listeners to the color buttons
-const highlightButtons = document.querySelectorAll(".highlight-button");
-highlightButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const selectedColor = button.getAttribute("data-color");
-        const verseElements = [];
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".highlight-button").forEach(button => {
+        const bgClass = Array.from(button.classList).find(className => className.startsWith('bg-'));
 
-        // Iterate through each selected verse number
-        myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
-            const selectedVerseId = "verseid" + myBibleApp.currentBook + "-" + myBibleApp.currentChapter + "-" + verseNumber;
-            const element = document.getElementById(selectedVerseId);
+        if (bgClass && ! button.hasAttribute('data-highlight')) {
+            button.setAttribute('data-highlight', bgClass);
+        }
 
-            if (element) {
-                const existingColor = element.getAttribute('highlightColor');
-                if (existingColor === selectedColor) {
-                    // If the selected color matches the existing highlight, remove it
-                    element.style.textDecoration = "none";
-                    element.removeAttribute('highlightColor');
-                } else if (selectedColor === "highlightedTransparent") {
-                    // If the selected color is transparent, remove any existing styles
-                    console.log("before element:", element);
-                    if (element.hasAttribute('highlightColor')) {
-                        element.removeAttribute('highlightColor');
-                    }
-                    element.style.textDecoration = "none";
-                    element.removeAttribute('highlightColor');
-                    // Get all the classes of the element
-                    const classes = element.classList;
+        button.addEventListener("click", () => {
+            const selectedColor = button.getAttribute("data-highlight");
 
-                    // Iterate through the classes and remove them
-                    for (const className of Array.from(classes)) {
-                        element.classList.remove(className);
-                    }
-                    console.log("after element:", element);
-                } else {
-                    // For other colors, apply the underline style and set the highlightColor attribute
-                    console.log("selectedColor:", selectedColor);
-                    console.log("before element:", element);
+            myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
+                const element = document.getElementById(
+                    `verseid${myBibleApp.currentBook}-${myBibleApp.currentChapter}-${verseNumber}`,
+                );
 
-                    if (element.hasAttribute('highlightColor')) {
-                        element.removeAttribute('highlightColor');
+                if (element) {
+                    const bgClasses = Array.from(element.classList).filter(className => className.startsWith('bg-'));
+                    element.classList.remove(...bgClasses);
+
+                    if (selectedColor !== "bg-transparent") {
+                        element.classList.add(selectedColor);
                     }
 
                     element.style.textDecoration = "none";
-                    element.classList.add(selectedColor);
-                    element.setAttribute('highlightColor', selectedColor);
+                    element.setAttribute('data-highlight', selectedColor);
                 }
+            });
 
-                verseElements.push(element);
+            // Hide the highlight toolbar
+            const highlightToolbar = document.getElementById("highlight-toolbar");
+            highlightToolbar.style.display = "none";
+            myBibleApp.selectedVerseNumbers = [];
 
-            }
+            // You can update cookies or perform other actions here
+            updateCookies();
         });
-
-
-        // Hide the highlight toolbar
-        const highlightToolbar = document.getElementById("highlight-toolbar");
-        highlightToolbar.style.display = "none";
-        myBibleApp.selectedVerseNumbers = [];
-
-        // You can update cookies or perform other actions here
-
-        updateCookies();
     });
 });
 
