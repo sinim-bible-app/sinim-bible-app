@@ -1,6 +1,41 @@
 import './app.css';
 import bibleData from './assets/translations/zh/chinese_union_version.json';
 
+document.getElementById('app').innerHTML = `
+    <div class="text-gray-800 bg-gray-300 p-2" id="toolbar">
+        <select id="book-dropdown"></select>
+        <button id="prev-button">◄</button>
+        <input value="1" class="w-14" type="text" inputmode="numeric" pattern="[0-9]*"
+            id="chapter-input" />
+        <button id="next-button" justify-content="right">►</button>
+        <button>ℹ️</button>
+        <button>🖨️</button>
+    </div>
+    <div id="bible-content" class="flex-grow overflow-y-auto"></div>
+
+    <div id="highlight-toolbar" class="hidden items-center justify-center gap-2 text-center p-2 bg-gray-300 text-gray-800">
+        <button class="bg-yellow-200 w-8 h-8 rounded-full border border-white"></button>
+        <button class="bg-green-200 w-8 h-8 rounded-full border border-white"></button>
+        <button class="bg-blue-200 w-8 h-8 rounded-full border border-white"></button>
+        <button class="bg-white w-8 h-8 rounded-full border border-white" data-highlight="bg-transparent"></button>
+        <button class="w-10 h-10" data-highlight="bg-transparent" id="notes-button">
+            <i>📝</i>
+        </button>
+    </div>
+
+    <div id="notes-modal" class="hidden fixed inset-0 bg-black/70 z-10 transition-all duration-300">
+        <div class="absolute inset-0 bg-white p-5 overflow-y-auto">
+            <div class="bg-gray-800 text-white p-2 flex items-center justify-between" id="toolbar">
+                <button id="closeNotes">X</button>
+                Bible Notes
+            </div>
+            <!-- Your content goes here -->
+            <br>
+            I love this verse.
+        </div>
+    </div>
+`;
+
 // Sample Bible data (replace with actual data)
 // Initialize your object or class with a default currentChapter value
 const myBibleApp = {
@@ -379,3 +414,4 @@ if (notesCloseButton) {
         }
     })
 }
+
