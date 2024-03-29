@@ -29,6 +29,8 @@ function onPageLoad() {
         myBibleApp.currentBook = parentDict["currentBook"];
         myBibleApp.currentChapter = parentDict["currentChapter"];
 
+        populateBibleText(myBibleApp.currentBook, myBibleApp.currentChapter);
+
         // Loop through the parentDict to apply highlights to verses
         for (const verseId in parentDict) {
             if (verseId !== "currentBook" && verseId !== "currentChapter") {
