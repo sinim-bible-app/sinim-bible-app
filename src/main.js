@@ -13,7 +13,6 @@ const myBibleApp = {
 const bookDropdown = document.getElementById("book-dropdown");
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");
-const bibleContent = document.getElementById("bible-content");
 // Define a global variable to store the currently selected verse numbers
 let selectedVerseNumbers = [];
 
@@ -146,19 +145,28 @@ function populateBibleText(bookIndex, chapterIndex) {
         // Clear any existing content in the bibleVersesDiv
         bibleVersesDiv.innerHTML = "";
 
+        const chapterNumber = document.createElement("span");
+        chapterNumber.innerHTML = `${chapterIndex + 1}`;
+        chapterNumber.classList.add("text-6xl", "leading-8", "float-left", "font-bold", "m-2");
+        bibleVersesDiv.appendChild(chapterNumber);
+
         // Populate the bibleVersesDiv with the verses from the selected chapter
         chapter.forEach((verse, index) => {
-            const verseElement = document.createElement("span"); // Create a <span> element for each verse
+            const verseElement = document.createElement("p");
 
             // Embed book, chapter, and verse data as data attributes
             verseElement.setAttribute("data-book", book.name);
             verseElement.setAttribute("data-chapter", chapterIndex + 1);
             verseElement.setAttribute("data-verse", index + 1);
+            verseElement.classList.add("mt-2");
             verseElement.id = "verseid" + myBibleApp.currentBook + "-" + myBibleApp.currentChapter + "-" + index
 
             // Add padding to the verse element to increase clickable area
             const trimmedString = removeSpaces(verse);
-            verseElement.innerHTML = `<sup>${index + 1}</sup> ${trimmedString}`;
+            if (index > 0) {
+                verseElement.innerHTML = `<sup class="mx-1">${index + 1}</sup>`;
+            }
+            verseElement.innerHTML += trimmedString;
 
 
             // Add a click event listener to each verse
