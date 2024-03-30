@@ -19,8 +19,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "prepare": "husky",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "test:cs": "prettier --check ."
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
