@@ -48,8 +48,6 @@ const myBibleApp = {
 const bookDropdown = document.getElementById("book-dropdown");
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");
-// Define a global variable to store the currently selected verse numbers
-let selectedVerseNumbers = [];
 
 // Define a function to be called when the page loads
 function onPageLoad() {
@@ -98,26 +96,6 @@ function onPageLoad() {
 // Attach the onPageLoad function to the DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", onPageLoad);
 
-// Function to handle color selection and apply it to the selected verse
-function selectColor(color) {
-    if (myBibleApp.selectedVerseNumbers !== null) {
-        myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
-            const selectedVerse = document.querySelector(
-                `[data-verse="${verseNumber}"]`,
-            );
-            if (selectedVerse) {
-                selectedVerse.style.backgroundColor = color;
-            }
-        });
-    }
-
-    // Hide the toolbar
-    const highlightToolbar = document.getElementById("highlight-toolbar");
-    if (highlightToolbar) {
-        highlightToolbar.classList.add("hidden");
-    }
-}
-
 // Function to set the currently selected verse
 function setSelectedVerse(verseNumber) {
     myBibleApp.selectedVerseNumbers.push(verseNumber);
@@ -158,16 +136,6 @@ function updateCookies() {
     localStorage.setItem("parentDict", serializedParentDict);
 
     console.log(parentDict);
-}
-
-// Function to retrieve the color name from the mapping
-function getColorNameFromMap(colorValue, colorMap) {
-    for (const key in colorMap) {
-        if (colorMap.hasOwnProperty(key) && colorMap[key] === colorValue) {
-            return key; // Return the color name if a match is found
-        }
-    }
-    return colorValue; // Return the original value if not found in the mapping
 }
 
 function removeSpaces(inputString) {
@@ -262,45 +230,6 @@ function populateBookDropdown() {
     });
 }
 
-// Get the number of chapters for a book
-function getNumberOfChaptersForBook(bookNumber) {
-    if (bookNumber >= 0 && bookNumber < bibleData.length) {
-        return bibleData[bookNumber].chapters.length;
-    }
-    return 0;
-}
-
-// Get the number of verses for a chapter
-function getNumberOfVersesFor(bookNumber, chapterNumber) {
-    if (
-        bookNumber >= 0 &&
-        bookNumber < bibleData.length &&
-        chapterNumber >= 0 &&
-        chapterNumber < bibleData[bookNumber].chapters.length
-    ) {
-        return bibleData[bookNumber].chapters[chapterNumber].verses;
-    }
-    return 0;
-}
-
-// Get a specific verse
-function getVerse(bookNumber, chapterNumber, verseNumber) {
-    if (
-        bookNumber >= 0 &&
-        bookNumber < bibleData.length &&
-        chapterNumber >= 0 &&
-        chapterNumber < bibleData[bookNumber].chapters.length &&
-        verseNumber >= 0 &&
-        verseNumber < bibleData[bookNumber].chapters[chapterNumber].verses
-    ) {
-        const book = bibleData[bookNumber].name;
-        const chapter = chapterNumber + 1;
-        const verse = verseNumber + 1;
-        return `${book} ${chapter}:${verse} - Sample verse text`; // Replace with actual verse data
-    }
-    return "Verse not found";
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     document
         .querySelectorAll("#highlight-toolbar > button")
@@ -376,14 +305,6 @@ nextButton.addEventListener("click", () => {
         onPageLoad();
     }
 });
-
-// Function to update the input field with the current chapter value
-function updateChapterInput() {
-    const chapterInput = document.getElementById("chapter-input");
-    if (chapterInput) {
-        chapterInput.value = String(myBibleApp.currentChapter + 1);
-    }
-}
 
 // Add event listener to the dropdown menu
 const dropdown = document.getElementById("book-dropdown"); // Replace "book-dropdown" with the ID of your dropdown menu element
