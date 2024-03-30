@@ -1,7 +1,7 @@
-import './app.css';
-import bibleData from './assets/translations/zh/chinese_union_version.json';
+import "./app.css";
+import bibleData from "./assets/translations/zh/chinese_union_version.json";
 
-document.getElementById('app').innerHTML = `
+document.getElementById("app").innerHTML = `
     <div class="text-gray-800 bg-gray-300 p-2" id="toolbar">
         <select id="book-dropdown"></select>
         <button id="prev-button">◄</button>
@@ -41,7 +41,7 @@ document.getElementById('app').innerHTML = `
 const myBibleApp = {
     currentChapter: 0, // Initialize to the first chapter or the appropriate default value
     currentBook: 0,
-    selectedVerseNumbers: []
+    selectedVerseNumbers: [],
     // Other properties and methods...
 };
 
@@ -54,7 +54,7 @@ let selectedVerseNumbers = [];
 // Define a function to be called when the page loads
 function onPageLoad() {
     // Check if the parentDict is stored in localStorage
-    const storedParentDict = localStorage.getItem('parentDict');
+    const storedParentDict = localStorage.getItem("parentDict");
 
     if (storedParentDict) {
         // Parse the parentDict from JSON
@@ -75,15 +75,18 @@ function onPageLoad() {
                 if (verseElement && childDict.key === "highlight") {
                     // Apply the highlight color
                     verseElement.classList.add(childDict.value);
-                    verseElement.setAttribute('data-highlight', childDict.value);
+                    verseElement.setAttribute(
+                        "data-highlight",
+                        childDict.value,
+                    );
                 }
             }
         }
     }
 
     // Set the current book and chapter dropdowns
-    const bookDropdown = document.getElementById('book-dropdown');
-    const chapterDropdown = document.getElementById('chapter-input');
+    const bookDropdown = document.getElementById("book-dropdown");
+    const chapterDropdown = document.getElementById("chapter-input");
 
     bookDropdown.value = myBibleApp.currentBook;
     chapterDropdown.value = myBibleApp.currentChapter + 1;
@@ -93,13 +96,15 @@ function onPageLoad() {
 }
 
 // Attach the onPageLoad function to the DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', onPageLoad);
+document.addEventListener("DOMContentLoaded", onPageLoad);
 
 // Function to handle color selection and apply it to the selected verse
 function selectColor(color) {
     if (myBibleApp.selectedVerseNumbers !== null) {
         myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
-            const selectedVerse = document.querySelector(`[data-verse="${verseNumber}"]`);
+            const selectedVerse = document.querySelector(
+                `[data-verse="${verseNumber}"]`,
+            );
             if (selectedVerse) {
                 selectedVerse.style.backgroundColor = color;
             }
@@ -129,7 +134,7 @@ function updateCookies() {
     console.log("we have " + numberOfVerses + " verses in this chapter");
 
     // Load the parent dictionary from localStorage if it exists
-    const storedParentDict = localStorage.getItem('parentDict');
+    const storedParentDict = localStorage.getItem("parentDict");
     const parentDict = storedParentDict ? JSON.parse(storedParentDict) : {};
 
     // Loop through each verse and get its color by ID
@@ -137,10 +142,10 @@ function updateCookies() {
         const verseId = `verseid${myBibleApp.currentBook}-${myBibleApp.currentChapter}-${verseIndex}`;
         const verseElement = document.getElementById(verseId);
         if (verseElement !== null) {
-            const highlight = verseElement.getAttribute('data-highlight');
+            const highlight = verseElement.getAttribute("data-highlight");
             console.log(verseId + ": " + highlight);
             // Store the highlight color in the parent dictionary
-            parentDict[verseId] = { key: 'highlight', value: highlight };
+            parentDict[verseId] = { key: "highlight", value: highlight };
         }
     }
 
@@ -150,7 +155,7 @@ function updateCookies() {
 
     // Serialize the parent dictionary to JSON and store it in localStorage
     const serializedParentDict = JSON.stringify(parentDict);
-    localStorage.setItem('parentDict', serializedParentDict);
+    localStorage.setItem("parentDict", serializedParentDict);
 
     console.log(parentDict);
 }
@@ -165,9 +170,8 @@ function getColorNameFromMap(colorValue, colorMap) {
     return colorValue; // Return the original value if not found in the mapping
 }
 
-
 function removeSpaces(inputString) {
-    return inputString.replace(/\s/g, '');
+    return inputString.replace(/\s/g, "");
 }
 
 // Function to populate the Bible text for a given book and chapter
@@ -184,7 +188,13 @@ function populateBibleText(bookIndex, chapterIndex) {
 
         const chapterNumber = document.createElement("span");
         chapterNumber.innerHTML = `${chapterIndex + 1}`;
-        chapterNumber.classList.add("text-6xl", "leading-8", "float-left", "font-bold", "m-2");
+        chapterNumber.classList.add(
+            "text-6xl",
+            "leading-8",
+            "float-left",
+            "font-bold",
+            "m-2",
+        );
         bibleVersesDiv.appendChild(chapterNumber);
 
         // Populate the bibleVersesDiv with the verses from the selected chapter
@@ -196,7 +206,13 @@ function populateBibleText(bookIndex, chapterIndex) {
             verseElement.setAttribute("data-chapter", chapterIndex + 1);
             verseElement.setAttribute("data-verse", index + 1);
             verseElement.classList.add("mt-2");
-            verseElement.id = "verseid" + myBibleApp.currentBook + "-" + myBibleApp.currentChapter + "-" + index
+            verseElement.id =
+                "verseid" +
+                myBibleApp.currentBook +
+                "-" +
+                myBibleApp.currentChapter +
+                "-" +
+                index;
 
             // Add padding to the verse element to increase clickable area
             const trimmedString = removeSpaces(verse);
@@ -204,7 +220,6 @@ function populateBibleText(bookIndex, chapterIndex) {
                 verseElement.innerHTML = `<sup class="mx-1">${index + 1}</sup>`;
             }
             verseElement.innerHTML += trimmedString;
-
 
             // Add a click event listener to each verse
             verseElement.addEventListener("click", (event) => {
@@ -214,7 +229,9 @@ function populateBibleText(bookIndex, chapterIndex) {
                 const verseNumber = event.target.getAttribute("data-verse");
 
                 // Log the book, chapter, and verse data
-                console.log(`Book: ${bookName}, Chapter: ${chapterNumber}, Verse: ${verseNumber}`);
+                console.log(
+                    `Book: ${bookName}, Chapter: ${chapterNumber}, Verse: ${verseNumber}`,
+                );
 
                 // Add the .highlighted class to the clicked verse
                 verseElement.style.textDecoration = "underline";
@@ -222,14 +239,13 @@ function populateBibleText(bookIndex, chapterIndex) {
                 // Set the currently selected verse
                 setSelectedVerse(verseNumber - 1);
 
-                const highlightToolbar = document.getElementById("highlight-toolbar");
+                const highlightToolbar =
+                    document.getElementById("highlight-toolbar");
                 highlightToolbar.classList.remove("hidden");
                 highlightToolbar.classList.add("flex");
             });
 
             bibleVersesDiv.appendChild(verseElement);
-
-
         });
     } else {
         console.error("bibleVerses div or highlight toolbar not found.");
@@ -256,7 +272,12 @@ function getNumberOfChaptersForBook(bookNumber) {
 
 // Get the number of verses for a chapter
 function getNumberOfVersesFor(bookNumber, chapterNumber) {
-    if (bookNumber >= 0 && bookNumber < bibleData.length && chapterNumber >= 0 && chapterNumber < bibleData[bookNumber].chapters.length) {
+    if (
+        bookNumber >= 0 &&
+        bookNumber < bibleData.length &&
+        chapterNumber >= 0 &&
+        chapterNumber < bibleData[bookNumber].chapters.length
+    ) {
         return bibleData[bookNumber].chapters[chapterNumber].verses;
     }
     return 0;
@@ -264,7 +285,14 @@ function getNumberOfVersesFor(bookNumber, chapterNumber) {
 
 // Get a specific verse
 function getVerse(bookNumber, chapterNumber, verseNumber) {
-    if (bookNumber >= 0 && bookNumber < bibleData.length && chapterNumber >= 0 && chapterNumber < bibleData[bookNumber].chapters.length && verseNumber >= 0 && verseNumber < bibleData[bookNumber].chapters[chapterNumber].verses) {
+    if (
+        bookNumber >= 0 &&
+        bookNumber < bibleData.length &&
+        chapterNumber >= 0 &&
+        chapterNumber < bibleData[bookNumber].chapters.length &&
+        verseNumber >= 0 &&
+        verseNumber < bibleData[bookNumber].chapters[chapterNumber].verses
+    ) {
         const book = bibleData[bookNumber].name;
         const chapter = chapterNumber + 1;
         const verse = verseNumber + 1;
@@ -274,49 +302,56 @@ function getVerse(bookNumber, chapterNumber, verseNumber) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("#highlight-toolbar > button").forEach(button => {
-        const bgClass = Array.from(button.classList).find(className => className.startsWith('bg-'));
+    document
+        .querySelectorAll("#highlight-toolbar > button")
+        .forEach((button) => {
+            const bgClass = Array.from(button.classList).find((className) =>
+                className.startsWith("bg-"),
+            );
 
-        if (bgClass && ! button.hasAttribute('data-highlight')) {
-            button.setAttribute('data-highlight', bgClass);
-        }
+            if (bgClass && !button.hasAttribute("data-highlight")) {
+                button.setAttribute("data-highlight", bgClass);
+            }
 
-        button.addEventListener("click", () => {
-            const selectedColor = button.getAttribute("data-highlight");
+            button.addEventListener("click", () => {
+                const selectedColor = button.getAttribute("data-highlight");
 
-            myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
-                const element = document.getElementById(
-                    `verseid${myBibleApp.currentBook}-${myBibleApp.currentChapter}-${verseNumber}`,
-                );
+                myBibleApp.selectedVerseNumbers.forEach((verseNumber) => {
+                    const element = document.getElementById(
+                        `verseid${myBibleApp.currentBook}-${myBibleApp.currentChapter}-${verseNumber}`,
+                    );
 
-                if (element) {
-                    const bgClasses = Array.from(element.classList).filter(className => className.startsWith('bg-'));
-                    element.classList.remove(...bgClasses);
+                    if (element) {
+                        const bgClasses = Array.from(element.classList).filter(
+                            (className) => className.startsWith("bg-"),
+                        );
+                        element.classList.remove(...bgClasses);
 
-                    if (selectedColor !== "bg-transparent") {
-                        element.classList.add(selectedColor);
+                        if (selectedColor !== "bg-transparent") {
+                            element.classList.add(selectedColor);
+                        }
+
+                        element.style.textDecoration = "none";
+                        element.setAttribute("data-highlight", selectedColor);
                     }
+                });
 
-                    element.style.textDecoration = "none";
-                    element.setAttribute('data-highlight', selectedColor);
-                }
+                const highlightToolbar =
+                    document.getElementById("highlight-toolbar");
+                highlightToolbar.classList.add("hidden");
+                myBibleApp.selectedVerseNumbers = [];
+
+                // You can update cookies or perform other actions here
+                updateCookies();
             });
-
-            const highlightToolbar = document.getElementById("highlight-toolbar");
-            highlightToolbar.classList.add("hidden");
-            myBibleApp.selectedVerseNumbers = [];
-
-            // You can update cookies or perform other actions here
-            updateCookies();
         });
-    });
 });
 
 // Event listener for previous button
 prevButton.addEventListener("click", () => {
     if (myBibleApp.currentChapter > 0) {
         myBibleApp.currentChapter--;
-        const chapterTextbox = document.getElementById('chapter-input');
+        const chapterTextbox = document.getElementById("chapter-input");
         chapterTextbox.value = myBibleApp.currentChapter + 1;
         // Handle updating the content for the previous chapter here
         // You might want to call a function to load and display the new chapter content
@@ -328,10 +363,11 @@ prevButton.addEventListener("click", () => {
 
 // Event listener for next button
 nextButton.addEventListener("click", () => {
-    const totalChapters = bibleData.books[myBibleApp.currentBook].chapters.length
+    const totalChapters =
+        bibleData.books[myBibleApp.currentBook].chapters.length;
     if (myBibleApp.currentChapter < totalChapters - 1) {
         myBibleApp.currentChapter++;
-        const chapterTextbox = document.getElementById('chapter-input');
+        const chapterTextbox = document.getElementById("chapter-input");
         chapterTextbox.value = myBibleApp.currentChapter + 1;
         // Handle updating the content for the next chapter here
         // You might want to call a function to load and display the new chapter content
@@ -380,7 +416,9 @@ function enterFullScreen() {
 
 // Call the function to enter full screen when needed, e.g., on a button click
 // You might want to trigger it based on user interaction, like a button click
-document.getElementById("fullscreen-button")?.addEventListener("click", enterFullScreen);
+document
+    .getElementById("fullscreen-button")
+    ?.addEventListener("click", enterFullScreen);
 
 // Add an event listener to the notes button
 const notesButton = document.getElementById("notes-button");
@@ -388,13 +426,19 @@ if (notesButton) {
     notesButton.addEventListener("click", () => {
         console.log("Notes button clicked"); // Log a message to the console
         const verseNumber = myBibleApp.selectedVerseNumbers[0];
-        const selectedVerseId = "verseid" + myBibleApp.currentBook + "-" + myBibleApp.currentChapter + "-" + verseNumber;
+        const selectedVerseId =
+            "verseid" +
+            myBibleApp.currentBook +
+            "-" +
+            myBibleApp.currentChapter +
+            "-" +
+            verseNumber;
         const element = document.getElementById(selectedVerseId);
         if (element) {
             element.style.textDecoration = "none";
         }
 
-        const highlightToolbar = document.getElementById("highlight-toolbar")
+        const highlightToolbar = document.getElementById("highlight-toolbar");
         highlightToolbar.classList.add("hidden");
         // Display the modal
         const modal = document.getElementById("notes-modal");
@@ -407,11 +451,10 @@ if (notesButton) {
 const notesCloseButton = document.getElementById("closeNotes");
 if (notesCloseButton) {
     notesCloseButton.addEventListener("click", () => {
-        console.log("close the modal")
+        console.log("close the modal");
         const modal = document.getElementById("notes-modal");
         if (modal) {
             modal.style.display = "none";
         }
-    })
+    });
 }
-
