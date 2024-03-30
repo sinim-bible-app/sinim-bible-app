@@ -1,4 +1,4 @@
-name: "Code Style"
+name: "Code Standards"
 
 on:
   push:
@@ -9,8 +9,7 @@ on:
       - main
 
 jobs:
-  code-style:
-    name: "Code Style"
+  code-standards:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout"
@@ -25,4 +24,7 @@ jobs:
         run: npm ci
 
       - name: "Run Prettier"
-        run: "npm run test:cs"
+        run: npm run test:cs
+
+      - name: "Run ESLint"
+        run: npm run test:lint
