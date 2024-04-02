@@ -1,5 +1,7 @@
 <script setup>
     import { ref, computed, watch, inject } from "vue";
+    import BibleChapter from "@/components/BibleChapter.vue";
+
     const bibleData = inject("bibleData");
 
     const currentBook = ref(0);
@@ -26,16 +28,14 @@
         // For example, saving the current selection to localStorage or performing API calls.
     });
 
-    // Populate initial verses when the component mounts
-    populateVerses();
-
     function populateVerses() {
         // Logic to handle verse population or other necessary setup when the book or chapter changes
     }
 </script>
+
 <template>
     <div>
-        <div class="text-gray-800 bg-gray-300 p-2" id="toolbar">
+        <div class="text-gray-800 bg-gray-300 p-2">
             <select v-model.number="currentBook" @change="populateVerses">
                 <option
                     v-for="(book, index) in bibleData.books"
@@ -52,20 +52,8 @@
                 </option>
             </select>
             <button @click="changeChapter(1)">►</button>
-            <button>ℹ️</button>
-            <button>🖨️</button>
         </div>
-        <div id="bible-content" class="flex-grow overflow-y-auto">
-            <span class="text-6xl leading-8 float-left fond-bold m-2">{{
-                currentChapter
-            }}</span>
-            <div v-for="(verse, index) in currentVerses" :key="index">
-                <p>
-                    <sup v-if="index > 0" class="mx-2">{{ index + 1 }}</sup
-                    >{{ verse.trim() }}
-                </p>
-            </div>
-        </div>
+        <BibleChapter :chapter="currentChapter" :verses="currentVerses" />
 
         <div
             id="highlight-toolbar"
