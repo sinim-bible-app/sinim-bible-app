@@ -1,59 +1,38 @@
 <script setup>
-    import { ref, computed, watch, inject } from "vue";
     import BibleChapter from "@/components/BibleChapter.vue";
+    import { useBibleStore } from "@/stores/bible";
 
-    const bibleData = inject("bibleData");
-
-    const currentBook = ref(0);
-    const currentChapter = ref(1);
-
-    const currentChapters = computed(() => {
-        return bibleData.books[currentBook.value].chapters || [];
-    });
-
-    const currentVerses = computed(() => {
-        return currentChapters.value[currentChapter.value - 1] || [];
-    });
-
-    function changeChapter(direction) {
-        const newChapter = currentChapter.value + direction;
-
-        if (newChapter >= 1 && newChapter <= currentChapters.value.length) {
-            currentChapter.value = newChapter;
-        }
-    }
-
-    watch([currentBook, currentChapter], () => {
-        // This function can be used to perform side effects whenever the current book or chapter changes.
-        // For example, saving the current selection to localStorage or performing API calls.
-    });
-
-    function populateVerses() {
-        // Logic to handle verse population or other necessary setup when the book or chapter changes
-    }
+    const bibleStore = useBibleStore();
 </script>
 
 <template>
     <div>
         <div class="text-gray-800 bg-gray-300 p-2">
-            <select v-model.number="currentBook" @change="populateVerses">
+            <select v-model.number="bibleStore.currentBook">
                 <option
-                    v-for="(book, index) in bibleData.books"
-                    :key="index"
-                    :value="index"
+                    v-for="(book, index) in bibleStore.bible.books"
+                    :key="index + 1"
+                    :value="index + 1"
                 >
                     {{ book.name }}
                 </option>
             </select>
-            <button @click="changeChapter(-1)">◄</button>
-            <select v-model.number="currentChapter">
-                <option v-for="i in currentChapters.length" :key="i" :value="i">
+            <button @click="bibleStore.changeChapter(-1)">◄</button>
+            <select v-model.number="bibleStore.currentChapter">
+                <option
+                    v-for="i in bibleStore.currentChapters.length"
+                    :key="i"
+                    :value="i"
+                >
                     Chapter {{ i }}
                 </option>
             </select>
-            <button @click="changeChapter(1)">►</button>
+            <button @click="bibleStore.changeChapter(1)">►</button>
         </div>
-        <BibleChapter :chapter="currentChapter" :verses="currentVerses" />
+        <BibleChapter
+            :chapter="bibleStore.currentChapter"
+            :verses="bibleStore.currentVerses"
+        />
 
         <div
             id="highlight-toolbar"
