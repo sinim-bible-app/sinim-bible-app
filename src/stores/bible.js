@@ -9,6 +9,10 @@ export const useBibleStore = defineStore("bible", () => {
     const highlights = useStorage("hightlights", {});
     const selectedVerses = ref([]);
 
+    const currentBookName = computed(() => {
+        return bible.books[currentBook.value - 1].name;
+    });
+
     const currentChapters = computed(() => {
         return bible.books[currentBook.value - 1].chapters || [];
     });
@@ -16,6 +20,19 @@ export const useBibleStore = defineStore("bible", () => {
     const currentVerses = computed(() => {
         return currentChapters.value[currentChapter.value - 1] || [];
     });
+
+    /**
+     * @param {number} verse
+     * @param {?number} chapter
+     * @param {?number} book
+     * @returns {string}
+     */
+    function getVerse(verse, chapter = null, book = null) {
+        chapter ??= currentChapter.value;
+        book ??= currentBook.value;
+
+        return bible.books[book - 1].chapters[chapter - 1][verse - 1];
+    }
 
     /** @param {number} direction */
     function changeChapter(direction) {
@@ -98,9 +115,11 @@ export const useBibleStore = defineStore("bible", () => {
     return {
         bible,
         currentBook,
+        currentBookName,
         currentChapter,
         currentChapters,
         currentVerses,
+        getVerse,
         changeChapter,
         highlights,
         selectedVerses,
