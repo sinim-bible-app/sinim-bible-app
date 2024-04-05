@@ -5,13 +5,14 @@
     const props = defineProps(["verseNumber", "verse"]);
     const bibleStore = useBibleStore();
 
+    const isSelected = computed(() =>
+        bibleStore.selectedVerses.includes(props.verseNumber),
+    );
+
     const classes = computed(() => [
-        {
-            "bg-gray-300 dark:bg-gray-700": bibleStore.selectedVerses.includes(
-                props.verseNumber,
-            ),
-        },
-        bibleStore.getVerseHighlight(props.verseNumber),
+        !isSelected.value
+            ? bibleStore.getVerseHighlight(props.verseNumber)
+            : "bg-gray-300 dark:bg-gray-700",
     ]);
 </script>
 

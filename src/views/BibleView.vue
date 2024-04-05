@@ -1,5 +1,6 @@
 <script setup>
     import BibleChapter from "@/components/BibleChapter.vue";
+    import ToolPanel from "@/components/ToolPanel.vue";
     import { useBibleStore } from "@/stores/bible";
 
     const bibleStore = useBibleStore();
@@ -33,28 +34,7 @@
             :chapter="bibleStore.currentChapter"
             :verses="bibleStore.currentVerses"
         />
-
-        <div
-            id="highlight-toolbar"
-            class="hidden items-center justify-center gap-2 text-center p-2 bg-gray-300 text-gray-800"
-        >
-            <button
-                class="bg-yellow-200 w-8 h-8 rounded-full border border-white"
-            ></button>
-            <button
-                class="bg-green-200 w-8 h-8 rounded-full border border-white"
-            ></button>
-            <button
-                class="bg-blue-200 w-8 h-8 rounded-full border border-white"
-            ></button>
-            <button
-                class="bg-white w-8 h-8 rounded-full border border-white"
-                data-highlight="bg-transparent"
-            ></button>
-            <button class="w-10 h-10" data-highlight="bg-transparent">
-                <i>📝</i>
-            </button>
-        </div>
+        <ToolPanel v-if="bibleStore.selectedVerses.length" />
 
         <div
             id="notes-modal"

@@ -40,14 +40,23 @@ export const useBibleStore = defineStore("bible", () => {
     /** @param {string} color */
     function highlightSelectedVerses(color) {
         selectedVerses.value.forEach((verse) => {
-            highlights.value[currentBook][currentChapter][verse] = color;
+            highlights.value[currentBook.value] ??= {};
+            highlights.value[currentBook.value][currentChapter.value] ??= {};
+            highlights.value[currentBook.value][currentChapter.value][verse] =
+                color;
         });
+
+        selectedVerses.value = [];
     }
 
     function removeSelectedVerseHighlights() {
         selectedVerses.value.forEach((verse) => {
-            delete highlights.value[currentBook][currentChapter][verse];
+            delete highlights.value[currentBook.value]?.[
+                currentChapter.value
+            ]?.[verse];
         });
+
+        selectedVerses.value = [];
     }
 
     /** @param {number} verse */
