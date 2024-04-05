@@ -7,19 +7,7 @@
     const { copy } = useClipboard({ legacy: true });
 
     function copyVerses() {
-        const text =
-            bibleStore.currentBookName +
-            ` ${bibleStore.currentChapter}:` +
-            `${bibleStore.formatVerseNumbers(bibleStore.selectedVerses)}\n` +
-            bibleStore.selectedVerses
-                .map(
-                    (verseNumber, idx) =>
-                        (idx > 0 ? `[${verseNumber}] ` : "") +
-                        bibleStore.getVerse(verseNumber),
-                )
-                .join(" ");
-
-        copy(text);
+        copy(bibleStore.getSelectedVerses());
 
         bibleStore.selectedVerses = [];
     }

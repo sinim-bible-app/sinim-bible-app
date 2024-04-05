@@ -108,6 +108,22 @@ export const useBibleStore = defineStore("bible", () => {
             .join(",");
     }
 
+    /** @returns {string} */
+    function getSelectedVerses() {
+        return (
+            currentBookName.value +
+            ` ${currentChapter.value}:` +
+            `${formatVerseNumbers(selectedVerses.value)}\n` +
+            selectedVerses.value
+                .map(
+                    (verseNumber, idx) =>
+                        (idx > 0 ? `[${verseNumber}] ` : "") +
+                        getVerse(verseNumber),
+                )
+                .join(" ")
+        );
+    }
+
     watch([currentBook, currentChapter], () => {
         selectedVerses.value = [];
     });
@@ -128,5 +144,6 @@ export const useBibleStore = defineStore("bible", () => {
         removeSelectedVerseHighlights,
         getVerseHighlight,
         formatVerseNumbers,
+        getSelectedVerses,
     };
 });
