@@ -1,6 +1,7 @@
 <script setup>
     import HighlightButton from "@/components/HighlightButton.vue";
     import CopyButton from "@/components/CopyButton.vue";
+    import ShareButton from "@/components/ShareButton.vue";
     import { NoSymbolIcon } from "@heroicons/vue/24/solid";
 </script>
 
@@ -19,8 +20,9 @@
             <HighlightButton color="bg-pink-200 dark:bg-pink-700" />
             <HighlightButton color="bg-orange-200 dark:bg-orange-700" />
         </div>
-        <div class="flex items-center justify-center gap-2 text-center p-2">
+        <div class="flex items-center justify-center gap-4 text-center p-2">
             <CopyButton />
+            <ShareButton />
         </div>
     </div>
 </template>
