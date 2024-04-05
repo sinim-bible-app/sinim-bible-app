@@ -18,7 +18,7 @@
 
 <template>
     <div @click="bibleStore.toggleSelectedVerse(verseNumber)">
-        <sup v-if="verseNumber > 1" class="mx-2 text-red-700 dark:text-red-500">
+        <sup v-if="verseNumber > 1" class="mr-2 text-red-700 dark:text-red-500">
             {{ verseNumber }}
         </sup>
         <span :class="classes">

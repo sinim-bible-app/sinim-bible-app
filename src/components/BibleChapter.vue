@@ -4,8 +4,8 @@
 </script>
 
 <template>
-    <div class="flex-grow overflow-y-auto">
-        <span class="text-6xl leading-8 float-left fond-bold m-2">
+    <div class="flex-grow overflow-y-auto p-3">
+        <span class="text-6xl leading-8 float-left fond-bold m-2 mb-3">
             {{ chapter }}
         </span>
         <BibleVerse
