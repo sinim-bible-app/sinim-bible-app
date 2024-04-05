@@ -5,14 +5,17 @@
 
 <template>
     <div
-        class="flex items-center justify-center gap-2 text-center p-2 bg-gray-100 dark:bg-gray-800"
+        class="sticky bottom-0 inset-x-0 z-10 flex items-center justify-center gap-2 text-center p-2 bg-gray-100 dark:bg-gray-800"
     >
         <HighlightButton>
-            <NoSymbolIcon />
+            <NoSymbolIcon class="scale-125" />
         </HighlightButton>
         <HighlightButton color="bg-yellow-200 dark:bg-yellow-600" />
         <HighlightButton color="bg-green-200 dark:bg-green-700" />
         <HighlightButton color="bg-blue-200 dark:bg-blue-700" />
+        <HighlightButton color="bg-purple-200 dark:bg-purple-700" />
+        <HighlightButton color="bg-pink-200 dark:bg-pink-700" />
+        <HighlightButton color="bg-orange-200 dark:bg-orange-700" />
         <button class="w-10 h-10">
             <i>📝</i>
         </button>
