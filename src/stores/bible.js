@@ -108,12 +108,18 @@ export const useBibleStore = defineStore("bible", () => {
             .join(",");
     }
 
-    /** @returns {string} */
-    function getSelectedVerses() {
+    function getReferenceString(verses) {
         return (
             currentBookName.value +
             ` ${currentChapter.value}:` +
-            `${formatVerseNumbers(selectedVerses.value)}\n` +
+            formatVerseNumbers(verses)
+        );
+    }
+
+    /** @returns {string} */
+    function getSelectedVerses() {
+        return (
+            `${getReferenceString(selectedVerses.value)}\n` +
             selectedVerses.value
                 .map(
                     (verseNumber, idx) =>
