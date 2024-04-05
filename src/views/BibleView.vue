@@ -8,8 +8,11 @@
 
 <template>
     <div>
-        <div class="text-gray-800 bg-gray-300 p-2">
-            <select v-model.number="bibleStore.currentBook">
+        <div class="bg-gray-100 dark:bg-gray-800 p-2">
+            <select
+                v-model.number="bibleStore.currentBook"
+                class="bg-gray-200 dark:bg-gray-700"
+            >
                 <option
                     v-for="(book, index) in bibleStore.bible.books"
                     :key="index + 1"
@@ -19,7 +22,10 @@
                 </option>
             </select>
             <button @click="bibleStore.changeChapter(-1)">◄</button>
-            <select v-model.number="bibleStore.currentChapter">
+            <select
+                v-model.number="bibleStore.currentChapter"
+                class="bg-gray-200 dark:bg-gray-700"
+            >
                 <option
                     v-for="i in bibleStore.currentChapters.length"
                     :key="i"
