@@ -16,7 +16,7 @@
             <RouterView />
         </div>
         <footer class="sticky bottom-0 inset-x-0 bg-gray-100 dark:bg-gray-800">
-            <nav class="flex items-center justify-around pt-1">
+            <nav class="flex items-center justify-around pt-1 text-xs">
                 <RouterLink
                     :to="{ name: 'home' }"
                     class="flex flex-col xitems-center xjustify-center"
