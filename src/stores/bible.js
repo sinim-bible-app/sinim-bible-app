@@ -59,13 +59,36 @@ export const useBibleStore = defineStore("bible", () => {
         selectedVerses.value = [];
     }
 
-    /** @param {number} verse */
+    /**
+     * @param {number} verse
+     * @returns {string}
+     */
     function getVerseHighlight(verse) {
         return (
             highlights.value[currentBook.value]?.[currentChapter.value]?.[
                 verse
             ] || ""
         );
+    }
+
+    /**
+     * @param {number[]} verses
+     * @returns {string}
+     */
+    function formatVerseNumbers(verses) {
+        verses.sort((a, b) => a - b);
+
+        return verses
+            .reduce((acc, curr, i) => {
+                if (i === 0 || curr !== verses[i - 1] + 1) {
+                    acc.push([curr]);
+                } else {
+                    acc[acc.length - 1][1] = curr;
+                }
+                return acc;
+            }, [])
+            .map((range) => range.join("–"))
+            .join(",");
     }
 
     watch([currentBook, currentChapter], () => {
@@ -85,5 +108,6 @@ export const useBibleStore = defineStore("bible", () => {
         highlightSelectedVerses,
         removeSelectedVerseHighlights,
         getVerseHighlight,
+        formatVerseNumbers,
     };
 });
