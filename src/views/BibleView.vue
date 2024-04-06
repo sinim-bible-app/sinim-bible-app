@@ -41,23 +41,5 @@
             :verses="bibleStore.currentVerses"
         />
         <ToolPanel v-if="bibleStore.selectedVerses.length" />
-
-        <div
-            id="notes-modal"
-            class="hidden fixed inset-0 bg-black/70 z-10 transition-all duration-300"
-        >
-            <div class="absolute inset-0 bg-white p-5 overflow-y-auto">
-                <div
-                    class="bg-gray-800 text-white p-2 flex items-center justify-between"
-                    id="toolbar"
-                >
-                    <button id="closeNotes">X</button>
-                    Bible Notes
-                </div>
-                <!-- Your content goes here -->
-                <br />
-                I love this verse.
-            </div>
-        </div>
     </div>
 </template>
