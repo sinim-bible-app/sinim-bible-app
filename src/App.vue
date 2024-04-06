@@ -19,7 +19,9 @@
         <main class="flex-grow">
             <RouterView />
         </main>
-        <footer class="sticky bottom-0 inset-x-0 bg-gray-100 dark:bg-gray-800">
+        <footer
+            class="sticky bottom-0 inset-x-0 bg-gray-100 dark:bg-gray-800 rounded-t-lg"
+        >
             <nav
                 v-show="navStore.showNav"
                 class="flex items-center justify-around pt-1 text-xs"
