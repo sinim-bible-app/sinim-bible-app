@@ -1,7 +1,10 @@
 <script setup>
     import { useBibleStore } from "@/stores/bible";
 
-    const props = defineProps(["color"]);
+    const props = defineProps({
+        color: String,
+    });
+
     const bibleStore = useBibleStore();
 
     function action() {

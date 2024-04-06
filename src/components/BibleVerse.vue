@@ -2,7 +2,11 @@
     import { computed } from "vue";
     import { useBibleStore } from "@/stores/bible";
 
-    const props = defineProps(["verseNumber", "verse"]);
+    const props = defineProps({
+        verse: String,
+        verseNumber: Number,
+    });
+
     const bibleStore = useBibleStore();
 
     const isSelected = computed(() =>

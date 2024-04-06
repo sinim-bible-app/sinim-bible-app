@@ -1,6 +1,9 @@
 <script setup>
     import BibleVerse from "@/components/BibleVerse.vue";
-    defineProps(["chapter", "verses"]);
+    defineProps({
+        chapter: Number,
+        verses: Array,
+    });
 </script>
 
 <template>
