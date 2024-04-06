@@ -27,17 +27,17 @@
     });
 
     function copyVerses() {
-        copy(bibleStore.getSelectedVerses());
+        copy(bibleStore.getFormattedVerses());
 
-        bibleStore.selectedVerses = [];
+        bibleStore.clearSelectedVerses();
     }
 
     const { share, isSupported: isShareSupported } = useShare();
 
     function shareVerses() {
-        share({ text: bibleStore.getSelectedVerses() });
+        share({ text: bibleStore.getFormattedVerses() });
 
-        bibleStore.selectedVerses = [];
+        bibleStore.clearSelectedVerses();
     }
 
     onMounted(() => {

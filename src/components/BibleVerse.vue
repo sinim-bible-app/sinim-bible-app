@@ -1,6 +1,7 @@
 <script setup>
     import { computed } from "vue";
     import { useBibleStore } from "@/stores/bible";
+    import { useHighlightsStore } from "@/stores/highlights";
 
     const props = defineProps({
         verse: String,
@@ -8,6 +9,7 @@
     });
 
     const bibleStore = useBibleStore();
+    const highlightsStore = useHighlightsStore();
 
     const isSelected = computed(() =>
         bibleStore.selectedVerses.includes(props.verseNumber),
@@ -15,7 +17,11 @@
 
     const classes = computed(() => [
         !isSelected.value
-            ? bibleStore.getVerseHighlight(props.verseNumber)
+            ? highlightsStore.get(
+                  bibleStore.currentBook,
+                  bibleStore.currentChapter,
+                  props.verseNumber,
+              )
             : "bg-gray-300 dark:bg-gray-700",
     ]);
 </script>

@@ -6,7 +6,6 @@ import { useStorageAsync } from "@vueuse/core";
 export const useBibleStore = defineStore("bible", () => {
     const currentBook = useStorageAsync("currentBook", 1);
     const currentChapter = useStorageAsync("currentChapter", 1);
-    const highlights = useStorageAsync("hightlights", {});
     const selectedVerses = ref([]);
 
     const currentBookName = computed(() => {
@@ -45,50 +44,21 @@ export const useBibleStore = defineStore("bible", () => {
 
     /** @param {number} verse */
     function toggleSelectedVerse(verse) {
-        if (selectedVerses.value.includes(verse)) {
-            selectedVerses.value = selectedVerses.value.filter(
-                (v) => v !== verse,
-            );
-        } else {
+        if (!selectedVerses.value.includes(verse)) {
             selectedVerses.value.push(verse);
+            return;
         }
+
+        selectedVerses.value = selectedVerses.value.filter((v) => v !== verse);
     }
 
-    /** @param {string} color */
-    function highlightSelectedVerses(color) {
-        selectedVerses.value.forEach((verse) => {
-            highlights.value[currentBook.value] ??= {};
-            highlights.value[currentBook.value][currentChapter.value] ??= {};
-            highlights.value[currentBook.value][currentChapter.value][verse] =
-                color;
-        });
-
-        selectedVerses.value = [];
-    }
-
-    function removeSelectedVerseHighlights() {
-        selectedVerses.value.forEach((verse) => {
-            delete highlights.value[currentBook.value]?.[
-                currentChapter.value
-            ]?.[verse];
-        });
-
+    function clearSelectedVerses() {
         selectedVerses.value = [];
     }
 
     /**
-     * @param {number} verse
-     * @returns {string}
-     */
-    function getVerseHighlight(verse) {
-        return (
-            highlights.value[currentBook.value]?.[currentChapter.value]?.[
-                verse
-            ] || ""
-        );
-    }
-
-    /**
+     * This formats an array of verse numbers into ranges separated by commas.
+     * For example, [1, 2, 3, 5, 7, 8] would return "1-3,5,7-8".
      * @param {number[]} verses
      * @returns {string}
      */
@@ -117,7 +87,7 @@ export const useBibleStore = defineStore("bible", () => {
     }
 
     /** @returns {string} */
-    function getSelectedVerses() {
+    function getFormattedVerses() {
         return (
             `${getReferenceString(selectedVerses.value)}\n` +
             selectedVerses.value
@@ -143,13 +113,11 @@ export const useBibleStore = defineStore("bible", () => {
         currentVerses,
         getVerse,
         changeChapter,
-        highlights,
         selectedVerses,
         toggleSelectedVerse,
-        highlightSelectedVerses,
-        removeSelectedVerseHighlights,
-        getVerseHighlight,
+        clearSelectedVerses,
         formatVerseNumbers,
-        getSelectedVerses,
+        getReferenceString,
+        getFormattedVerses,
     };
 });
