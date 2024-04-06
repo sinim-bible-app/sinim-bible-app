@@ -1,12 +1,12 @@
 import { ref, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import bible from "@/assets/translations/zh/chinese_union_version.json";
-import { useStorage } from "@vueuse/core";
+import { useStorageAsync } from "@vueuse/core";
 
 export const useBibleStore = defineStore("bible", () => {
-    const currentBook = useStorage("currentBook", 1);
-    const currentChapter = useStorage("currentChapter", 1);
-    const highlights = useStorage("hightlights", {});
+    const currentBook = useStorageAsync("currentBook", 1);
+    const currentChapter = useStorageAsync("currentChapter", 1);
+    const highlights = useStorageAsync("hightlights", {});
     const selectedVerses = ref([]);
 
     const currentBookName = computed(() => {
