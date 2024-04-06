@@ -19,6 +19,7 @@
         :disabled
         :class="{ 'opacity-50 cursor-not-allowed': disabled }"
         @click="action"
+        type="button"
     >
         <Component :is="icon" class="h-6 text-current" />
         {{ label }}
