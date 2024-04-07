@@ -8,8 +8,10 @@
         BookOpenIcon,
         InformationCircleIcon,
     } from "@heroicons/vue/24/outline";
+    import { useI18n } from "vue-i18n";
 
     const navStore = useNavStore();
+    const { t } = useI18n();
 </script>
 
 <template>
@@ -27,13 +29,19 @@
                 class="flex items-center justify-around pt-1 text-xs"
             >
                 <RouterLink :to="{ name: 'home' }" activeClass="text-blue-500">
-                    <IconButton label="Home" :icon="HomeIcon()" />
+                    <IconButton :label="t('nav.home')" :icon="HomeIcon()" />
                 </RouterLink>
                 <RouterLink :to="{ name: 'bible' }" activeClass="text-blue-500">
-                    <IconButton label="Bible" :icon="BookOpenIcon()" />
+                    <IconButton
+                        :label="t('nav.bible')"
+                        :icon="BookOpenIcon()"
+                    />
                 </RouterLink>
                 <RouterLink :to="{ name: 'about' }" activeClass="text-blue-500">
-                    <IconButton label="About" :icon="InformationCircleIcon()" />
+                    <IconButton
+                        :label="t('nav.about')"
+                        :icon="InformationCircleIcon()"
+                    />
                 </RouterLink>
                 <DarkMode />
             </nav>
