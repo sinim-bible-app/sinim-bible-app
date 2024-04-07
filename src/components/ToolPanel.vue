@@ -1,8 +1,7 @@
 <script setup>
-    import { ref, onMounted, onUnmounted } from "vue";
+    import { onMounted, onUnmounted } from "vue";
     import HighlightButton from "@/components/HighlightButton.vue";
     import IconButton from "@/components/IconButton.vue";
-    import ModalTemplate from "@/components/ModalTemplate.vue";
     import {
         DocumentDuplicateIcon,
         NoSymbolIcon,
@@ -12,20 +11,17 @@
     import { useClipboard, useShare } from "@vueuse/core";
     import { useBibleStore } from "@/stores/bible";
     import { useNavStore } from "@/stores/nav";
+    import { useNotesStore } from "@/stores/notes";
 
     const bibleStore = useBibleStore();
     const navStore = useNavStore();
-
-    const showNoteModal = ref(false);
-
-    function toggleNoteModal() {
-        showNoteModal.value = !showNoteModal.value;
-    }
+    const notesStore = useNotesStore();
 
     const { copy, isSupported: isCopySupported } = useClipboard({
         legacy: true,
     });
 
+    /** @return {void} */
     function copyVerses() {
         copy(bibleStore.getFormattedVerses());
 
@@ -34,9 +30,23 @@
 
     const { share, isSupported: isShareSupported } = useShare();
 
+    /** @return {void} */
     function shareVerses() {
         share({ text: bibleStore.getFormattedVerses() });
 
+        bibleStore.clearSelectedVerses();
+    }
+
+    /** @return {void} */
+    function addNote() {
+        notesStore.select(
+            bibleStore.currentBook,
+            bibleStore.currentChapter,
+            Math.min(...bibleStore.selectedVerses),
+            bibleStore.getReferenceString(bibleStore.selectedVerses),
+        );
+
+        notesStore.toggleModal();
         bibleStore.clearSelectedVerses();
     }
 
@@ -71,7 +81,7 @@
             />
             <IconButton
                 :icon="PencilSquareIcon()"
-                :action="toggleNoteModal"
+                :action="addNote"
                 label="Notes"
             />
             <IconButton
@@ -79,10 +89,6 @@
                 :action="shareVerses"
                 :disabled="!isShareSupported"
                 label="Share"
-            />
-            <ModalTemplate
-                :show="showNoteModal"
-                @toggleModal="toggleNoteModal"
             />
         </div>
     </Teleport>

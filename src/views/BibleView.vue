@@ -1,6 +1,7 @@
 <script setup>
     import BibleChapter from "@/components/BibleChapter.vue";
     import ToolPanel from "@/components/ToolPanel.vue";
+    import NotesModal from "@/components/NotesModal.vue";
     import { useBibleStore } from "@/stores/bible";
 
     const bibleStore = useBibleStore();
@@ -41,5 +42,6 @@
             :verses="bibleStore.currentVerses"
         />
         <ToolPanel v-if="bibleStore.selectedVerses.length" />
+        <NotesModal />
     </div>
 </template>

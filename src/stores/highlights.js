@@ -9,6 +9,7 @@ export const useHighlightsStore = defineStore("highlights", () => {
      * @param {number} chapter
      * @param {number[]} verses
      * @param {string} color
+     * @returns {void}
      */
     function add(book, chapter, verses, color) {
         verses.forEach((verse) => {
@@ -22,6 +23,7 @@ export const useHighlightsStore = defineStore("highlights", () => {
      * @param {number} book
      * @param {number} chapter
      * @param {number[]} verses
+     * @returns {void}
      */
     function remove(book, chapter, verses) {
         verses.forEach((verse) => {

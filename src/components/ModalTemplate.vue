@@ -1,5 +1,5 @@
 <script setup>
-    import { defineEmits, watch, nextTick } from "vue";
+    import { watch, nextTick } from "vue";
     import { XMarkIcon } from "@heroicons/vue/24/solid";
 
     const props = defineProps({

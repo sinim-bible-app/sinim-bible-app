@@ -33,7 +33,10 @@ export const useBibleStore = defineStore("bible", () => {
         return bible.books[book - 1].chapters[chapter - 1][verse - 1];
     }
 
-    /** @param {number} direction */
+    /**
+     * @param {number} direction
+     * @returns {void}
+     */
     function changeChapter(direction) {
         const newChapter = currentChapter.value + direction;
 
@@ -42,7 +45,10 @@ export const useBibleStore = defineStore("bible", () => {
         }
     }
 
-    /** @param {number} verse */
+    /**
+     * @param {number} verse
+     * @returns {void}
+     */
     function toggleSelectedVerse(verse) {
         if (!selectedVerses.value.includes(verse)) {
             selectedVerses.value.push(verse);
@@ -52,6 +58,7 @@ export const useBibleStore = defineStore("bible", () => {
         selectedVerses.value = selectedVerses.value.filter((v) => v !== verse);
     }
 
+    /** @returns {void} */
     function clearSelectedVerses() {
         selectedVerses.value = [];
     }
@@ -78,6 +85,7 @@ export const useBibleStore = defineStore("bible", () => {
             .join(",");
     }
 
+    /** @returns {string} */
     function getReferenceString(verses) {
         return (
             currentBookName.value +

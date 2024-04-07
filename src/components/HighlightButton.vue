@@ -9,6 +9,7 @@
     const bibleStore = useBibleStore();
     const highlightsStore = useHighlightsStore();
 
+    /** @return {void} */
     function action() {
         if (props.color) {
             highlightsStore.add(
