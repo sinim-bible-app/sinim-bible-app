@@ -1,31 +1,46 @@
 {
   "name": "sinim",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "private": true,
   "description": "Sinim Bible App",
   "author": "//",
   "type": "module",
   "license": "//",
+  "dependencies": {
+    "@heroicons/vue": "^2.1.3",
+    "@vueuse/core": "^10.9.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/test-utils": "^2.4.5",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.24.0",
     "husky": "^9.0.11",
+    "jsdom": "^24.0.0",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
     "prettier": "3.2.5",
     "tailwindcss": "^3.4.3",
     "vite": "^5.2.0",
-    "vite-plugin-singlefile": "^2.0.1"
+    "vite-plugin-singlefile": "^2.0.1",
+    "vite-plugin-vue-devtools": "^7.0.18",
+    "vitest": "^1.4.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "lint": "eslint --fix src/",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "prepare": "husky",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "vitest",
     "test:cs": "prettier --check .",
-    "test:lint": "eslint ."
+    "test:lint": "eslint src/"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint --fix",
