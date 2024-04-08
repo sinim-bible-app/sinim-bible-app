@@ -3,5 +3,20 @@
     "home": "Home",
     "bible": "Bible",
     "about": "About"
+  },
+  "actions": {
+    "copy": "Copy",
+    "highlight": "Highlight",
+    "note": "Note | Notes",
+    "print": "Print",
+    "search": "Search",
+    "share": "Share"
+  },
+  "bible": {
+    "holy": "Holy Bible",
+    "ot": "Old Testament",
+    "nt": "New Testament",
+    "chapter": "Chapter {n}",
+    "verse": "Verse {n}"
   }
 }

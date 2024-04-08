@@ -3,8 +3,10 @@
     import ToolPanel from "@/components/ToolPanel.vue";
     import NotesModal from "@/components/NotesModal.vue";
     import { useBibleStore } from "@/stores/bible";
+    import { useI18n } from "vue-i18n";
 
     const bibleStore = useBibleStore();
+    const { t, n } = useI18n();
 </script>
 
 <template>
@@ -32,7 +34,7 @@
                     :key="i"
                     :value="i"
                 >
-                    Chapter {{ i }}
+                    {{ t("bible.chapter", { n: n(i) }) }}
                 </option>
             </select>
             <button @click="bibleStore.changeChapter(1)">►</button>

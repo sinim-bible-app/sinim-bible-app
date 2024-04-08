@@ -4,12 +4,14 @@
     import { useHighlightsStore } from "@/stores/highlights";
     import { useNotesStore } from "@/stores/notes";
     import { ChatBubbleBottomCenterTextIcon } from "@heroicons/vue/24/outline";
+    import { useI18n } from "vue-i18n";
 
     const props = defineProps({
         verse: String,
         verseNumber: Number,
     });
 
+    const { n } = useI18n();
     const bibleStore = useBibleStore();
     const highlightsStore = useHighlightsStore();
     const notesStore = useNotesStore();
@@ -52,7 +54,7 @@
 <template>
     <div @click="bibleStore.toggleSelectedVerse(verseNumber)">
         <sup v-if="verseNumber > 1" class="mr-1 text-red-700 dark:text-red-500">
-            {{ verseNumber }}
+            {{ n(verseNumber) }}
         </sup>
         <ChatBubbleBottomCenterTextIcon
             v-if="hasNote"

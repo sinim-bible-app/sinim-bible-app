@@ -3,5 +3,20 @@
     "home": "首页",
     "bible": "圣经",
     "about": "关于"
+  },
+  "actions": {
+    "copy": "复制",
+    "highlight": "高亮",
+    "note": "笔记",
+    "print": "打印",
+    "search": "搜索",
+    "share": "分享"
+  },
+  "bible": {
+    "holy": "圣经",
+    "ot": "旧约全书",
+    "nt": "新约全书",
+    "chapter": "章 {n}",
+    "verse": "节 {n}"
   }
 }

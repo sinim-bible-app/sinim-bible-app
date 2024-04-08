@@ -12,10 +12,12 @@
     import { useBibleStore } from "@/stores/bible";
     import { useNavStore } from "@/stores/nav";
     import { useNotesStore } from "@/stores/notes";
+    import { useI18n } from "vue-i18n";
 
     const bibleStore = useBibleStore();
     const navStore = useNavStore();
     const notesStore = useNotesStore();
+    const { t } = useI18n();
 
     const { copy, isSupported: isCopySupported } = useClipboard({
         legacy: true,
@@ -77,18 +79,18 @@
                 :icon="DocumentDuplicateIcon()"
                 :action="copyVerses"
                 :disabled="!isCopySupported"
-                label="Copy"
+                :label="t('actions.copy')"
             />
             <IconButton
                 :icon="PencilSquareIcon()"
                 :action="addNote"
-                label="Notes"
+                :label="t('actions.note')"
             />
             <IconButton
                 :icon="ShareIcon()"
                 :action="shareVerses"
                 :disabled="!isShareSupported"
-                label="Share"
+                :label="t('actions.share')"
             />
         </div>
     </Teleport>
