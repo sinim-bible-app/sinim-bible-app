@@ -1,4 +1,7 @@
 {
+  "app": {
+    "title": "Sinim Bible App"
+  },
   "nav": {
     "home": "Home",
     "bible": "Bible",

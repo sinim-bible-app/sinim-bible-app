@@ -1,4 +1,5 @@
 <script setup>
+    import { watchEffect } from "vue";
     import { RouterLink, RouterView } from "vue-router";
     import DarkMode from "@/components/DarkMode.vue";
     import IconButton from "@/components/IconButton.vue";
@@ -12,6 +13,10 @@
 
     const navStore = useNavStore();
     const { t } = useI18n();
+
+    watchEffect(() => {
+        document.title = t("app.title");
+    });
 </script>
 
 <template>
