@@ -17,6 +17,12 @@
     "ot": "Old Testament",
     "nt": "New Testament",
     "chapter": "Chapter {n}",
-    "verse": "Verse {n}"
+    "verse": "Verse {n}",
+    "references": {
+      "verse_range": "{start}–{end}",
+      "chapter_verse": "{chapter}:{verse}",
+      "full": "{book} @:bible.references.chapter_verse"
+    },
+    "note": "Note on {ref}"
   }
 }

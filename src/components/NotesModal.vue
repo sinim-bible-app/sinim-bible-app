@@ -1,8 +1,10 @@
 <script setup>
     import ModalTemplate from "@/components/ModalTemplate.vue";
     import { useNotesStore } from "@/stores/notes";
+    import { useI18n } from "vue-i18n";
 
     const notesStore = useNotesStore();
+    const { t } = useI18n();
 </script>
 
 <template>
@@ -11,7 +13,7 @@
         @toggleModal="notesStore.toggleModal"
     >
         <template #title>
-            Note on {{ notesStore.selected.note.reference }}
+            {{ t("bible.note", { ref: notesStore.selected.note.reference }) }}
         </template>
         <textarea
             class="w-full h-32 p-2 rounded-md dark:bg-gray-500"

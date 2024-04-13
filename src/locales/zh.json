@@ -16,7 +16,13 @@
     "holy": "圣经",
     "ot": "旧约全书",
     "nt": "新约全书",
-    "chapter": "章 {n}",
-    "verse": "节 {n}"
+    "chapter": "章{n}",
+    "verse": "节{n}",
+    "references": {
+      "verse_range": "{start}–{end}",
+      "chapter_verse": "{chapter}:{verse}",
+      "full": "{book}@:bible.references.chapter_verse"
+    },
+    "note": "关于{ref}的注解"
   }
 }

@@ -2,8 +2,10 @@ import { ref, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import bible from "@/assets/translations/zh/chinese_union_version.json";
 import { useStorageAsync } from "@vueuse/core";
+import { useI18n } from "vue-i18n";
 
 export const useBibleStore = defineStore("bible", () => {
+    const { t, n } = useI18n();
     const currentBook = useStorageAsync("currentBook", 1);
     const currentChapter = useStorageAsync("currentChapter", 1);
     const selectedVerses = ref([]);
@@ -81,17 +83,27 @@ export const useBibleStore = defineStore("bible", () => {
                 }
                 return acc;
             }, [])
-            .map((range) => range.join("–"))
+            .map((range) => range.map((v) => n(v)))
+            .map((range) => {
+                if (range.length === 1) {
+                    return range[0];
+                }
+
+                return t("bible.references.verse_range", {
+                    start: range[0],
+                    end: range[1],
+                });
+            })
             .join(",");
     }
 
     /** @returns {string} */
     function getReferenceString(verses) {
-        return (
-            currentBookName.value +
-            ` ${currentChapter.value}:` +
-            formatVerseNumbers(verses)
-        );
+        return t("bible.references.full", {
+            book: currentBookName.value,
+            chapter: currentChapter.value,
+            verse: formatVerseNumbers(verses),
+        });
     }
 
     /** @returns {string} */
