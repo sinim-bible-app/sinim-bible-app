@@ -22,7 +22,9 @@ jobs:
         run: npm ci
 
       - name: "Build"
-        run: npm run build
+        run: |
+          npm run build
+          mv dist/index.html dist/sinim.html
 
       - name: "Upload Build Artifacts"
         uses: "actions/upload-artifact@v4"
