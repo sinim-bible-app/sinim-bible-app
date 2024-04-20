@@ -1,0 +1,31 @@
+{
+  "app": {
+    "title": "برنامه کتاب مقدس سینیم"
+  },
+  "nav": {
+    "home": "خانه",
+    "bible": "کتاب مقدس",
+    "about": "درباره"
+  },
+  "actions": {
+    "copy": "کپی",
+    "highlight": "برجسته‌سازی",
+    "note": "یادداشت | یادداشت‌ها",
+    "print": "چاپ",
+    "search": "جستجو",
+    "share": "اشتراک‌گذاری"
+  },
+  "bible": {
+    "holy": "کتاب مقدس",
+    "ot": "عهد عتیق",
+    "nt": "عهد جدید",
+    "chapter": "فصل {n}",
+    "verse": "آیه {n}",
+    "references": {
+      "verse_range": "{end}–{start}",
+      "chapter_verse": "{verse}:{chapter}",
+      "full": "@:bible.references.chapter_verse {book}"
+    },
+    "note": "{ref} یادداشت بر"
+  }
+}
