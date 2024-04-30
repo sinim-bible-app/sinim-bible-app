@@ -8,6 +8,7 @@
         HomeIcon,
         BookOpenIcon,
         InformationCircleIcon,
+        MagnifyingGlassIcon,
     } from "@heroicons/vue/24/outline";
     import { useI18n } from "vue-i18n";
 
@@ -40,6 +41,15 @@
                     <IconButton
                         :label="t('nav.bible')"
                         :icon="BookOpenIcon()"
+                    />
+                </RouterLink>
+                <RouterLink
+                    :to="{ name: 'search' }"
+                    activeClass="text-blue-500"
+                >
+                    <IconButton
+                        :label="t('nav.search')"
+                        :icon="MagnifyingGlassIcon()"
                     />
                 </RouterLink>
                 <RouterLink :to="{ name: 'about' }" activeClass="text-blue-500">

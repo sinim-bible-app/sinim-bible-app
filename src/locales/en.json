@@ -5,6 +5,7 @@
   "nav": {
     "home": "Home",
     "bible": "Bible",
+    "search": "Search",
     "about": "About"
   },
   "actions": {
