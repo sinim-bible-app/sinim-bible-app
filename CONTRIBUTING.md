@@ -6,6 +6,7 @@ This document provides guidelines and instructions to help you set up your devel
 ## Prerequisites
 
 Before you can start working, you'll need to have [Node.js](https://nodejs.org) installed on your system.
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It lets you run JavaScript code outside of a browser.
 Please visit the official website and download the latest version for your operating system.
 
 ### Verifying Installation
@@ -21,13 +22,50 @@ npm --version
 
 After forking and cloning the repository, you'll need to set up your development environment.
 
-### Install dependencies
+### Managing Dependencies
 
-Run the following command to install the project dependencies:
+You will use npm commands to manage project dependencies. Here's how to effectively use them:
+
+- **`npm install`**: This command installs all the dependencies listed in your `package.json` and is generally used to set up the project after cloning or when manually adding new packages to your development environment.
+
+  - It installs the latest versions that satisfy the version ranges specified in `package.json` and updates `package-lock.json` accordingly.
+
+- **`npm ci`** (Clean Install): Use this command for a clean, predictable installation, especially in continuous integration (CI) environments. It requires a `package-lock.json` or `npm-shrinkwrap.json` file and does not modify these files.
+
+  - It removes the existing `node_modules` folder and reinstalls all dependencies from scratch, based on `package-lock.json`, ensuring that all developers and your deployment environments are using exactly the same dependency tree.
+
+- **`npm update`**: This command updates all packages to the latest version that satisfies the version ranges specified in `package.json` and updates `package-lock.json` to reflect the changes. Use this command to upgrade dependencies deliberately.
+
+### Install Dependencies
+
+For initial setup and when not concerned with exact dependency versions, run the following command to install the project dependencies:
 
 ```bash
 npm install
 ```
+
+For a predictable and repeatable setup (recommended for production builds or continuous integration environments), use:
+
+```bash
+npm ci
+```
+
+These commands will set up your environment with the necessary dependencies to start developing.
+
+## Tools and Libraries Used
+
+Here's a brief overview of the main tools and libraries we use:
+
+- **Vite**: A modern frontend build tool that significantly improves the frontend development experience. It's especially suited for projects using Vue.js. [Vite Documentation](https://vitejs.dev/guide/)
+- **Vue.js**: A progressive JavaScript framework for building user interfaces. The core library is focused on the view layer only. [Vue.js Documentation](https://vuejs.org/v2/guide/)
+- **Vue Router**: The official router for Vue.js. It integrates deeply with Vue.js core to make building Single Page Applications with Vue.js a breeze. [Vue Router Documentation](https://router.vuejs.org/)
+- **Pinia**: The Vue Store that you will enjoy using. It serves as the centralized store for all the components in an application. [Pinia Documentation](https://pinia.vuejs.org/)
+- **Vue I18n**: Internationalization plugin for Vue.js. It integrates seamlessly into your app. [Vue I18n Documentation](https://vue-i18n.intlify.dev/)
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces. [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- **Heroicons**: A set of free, MIT-licensed high-quality SVG icons, optimized for use with web projects. Perfect for enhancing UI/UX with clean and scalable graphics. [Heroicons Documentation](https://heroicons.com/)
+- **ESLint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease. [ESLint Documentation](https://eslint.org/)
+- **Prettier**: An opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. [Prettier Documentation](https://prettier.io/)
+- **Vitest**: A Vite-native unit test framework. It's fast, performant, and works out of the box for Vite projects. [Vitest Documentation](https://vitest.dev/)
 
 ## Running/Building the Project
 
