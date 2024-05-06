@@ -56,16 +56,16 @@ These commands will set up your environment with the necessary dependencies to s
 
 Here's a brief overview of the main tools and libraries we use:
 
-- **Vite**: A modern frontend build tool that significantly improves the frontend development experience. It's especially suited for projects using Vue.js. [Vite Documentation](https://vitejs.dev/guide/)
-- **Vue.js**: A progressive JavaScript framework for building user interfaces. The core library is focused on the view layer only. [Vue.js Documentation](https://vuejs.org/v2/guide/)
-- **Vue Router**: The official router for Vue.js. It integrates deeply with Vue.js core to make building Single Page Applications with Vue.js a breeze. [Vue Router Documentation](https://router.vuejs.org/)
-- **Pinia**: The Vue Store that you will enjoy using. It serves as the centralized store for all the components in an application. [Pinia Documentation](https://pinia.vuejs.org/)
-- **Vue I18n**: Internationalization plugin for Vue.js. It integrates seamlessly into your app. [Vue I18n Documentation](https://vue-i18n.intlify.dev/)
-- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces. [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- **Heroicons**: A set of free, MIT-licensed high-quality SVG icons, optimized for use with web projects. Perfect for enhancing UI/UX with clean and scalable graphics. [Heroicons Documentation](https://heroicons.com/)
-- **ESLint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease. [ESLint Documentation](https://eslint.org/)
-- **Prettier**: An opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. [Prettier Documentation](https://prettier.io/)
-- **Vitest**: A Vite-native unit test framework. It's fast, performant, and works out of the box for Vite projects. [Vitest Documentation](https://vitest.dev/)
+- [**Vite**](https://vitejs.dev/guide/): A modern frontend build tool that significantly improves the frontend development experience. It's especially suited for projects using Vue.js.
+- [**Vue.js**](https://vuejs.org/v2/guide/): A progressive JavaScript framework for building user interfaces. The core library is focused on the view layer only.
+- [**Vue Router**](https://router.vuejs.org/): The official router for Vue.js. It integrates deeply with Vue.js core to make building Single Page Applications with Vue.js a breeze.
+- [**Pinia**](https://pinia.vuejs.org/): The Vue Store that you will enjoy using. It serves as the centralized store for all the components in an application.
+- [**Vue I18n**](https://vue-i18n.intlify.dev/): Internationalization plugin for Vue.js. It integrates seamlessly into your app.
+- [**Tailwind CSS**](https://tailwindcss.com/docs): A utility-first CSS framework for rapidly building custom user interfaces.
+- [**Heroicons**](https://heroicons.com/): A set of free, MIT-licensed high-quality SVG icons, optimized for use with web projects. Perfect for enhancing UI/UX with clean and scalable graphics.
+- [**ESLint**](https://eslint.org/): A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.
+- [**Prettier**](https://prettier.io/): An opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+- [**Vitest**](https://vitest.dev/): A Vite-native unit test framework. It's fast, performant, and works out of the box for Vite projects.
 
 ## Running/Building the Project
 
