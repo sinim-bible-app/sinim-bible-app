@@ -26,13 +26,9 @@ After forking and cloning the repository, you'll need to set up your development
 
 You will use npm commands to manage project dependencies. Here's how to effectively use them:
 
-- **`npm install`**: This command installs all the dependencies listed in your `package.json` and is generally used to set up the project after cloning or when manually adding new packages to your development environment.
+- **`npm install`**: This command installs all the dependencies listed in your `package.json` and is generally used to set up the project after cloning or when manually adding new packages to your development environment. It installs the latest versions that satisfy the version ranges specified in `package.json` and updates `package-lock.json` accordingly.
 
-  - It installs the latest versions that satisfy the version ranges specified in `package.json` and updates `package-lock.json` accordingly.
-
-- **`npm ci`** (Clean Install): Use this command for a clean, predictable installation, especially in continuous integration (CI) environments. It requires a `package-lock.json` or `npm-shrinkwrap.json` file and does not modify these files.
-
-  - It removes the existing `node_modules` folder and reinstalls all dependencies from scratch, based on `package-lock.json`, ensuring that all developers and your deployment environments are using exactly the same dependency tree.
+- **`npm ci`** (Clean Install): Use this command for a clean, predictable installation, especially in continuous integration (CI) environments. It requires a `package-lock.json` file and does not modify the file. It removes the existing `node_modules` folder and reinstalls all dependencies from scratch, based on `package-lock.json`, ensuring that all developers and your deployment environments are using exactly the same dependency tree.
 
 - **`npm update`**: This command updates all packages to the latest version that satisfies the version ranges specified in `package.json` and updates `package-lock.json` to reflect the changes. Use this command to upgrade dependencies deliberately.
 
