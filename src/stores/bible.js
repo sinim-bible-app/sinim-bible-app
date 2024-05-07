@@ -40,11 +40,28 @@ export const useBibleStore = defineStore("bible", () => {
      * @returns {void}
      */
     function changeChapter(direction) {
-        const newChapter = currentChapter.value + direction;
+        let newChapter = currentChapter.value + direction;
+        let chapterCount = currentChapters.value.length;
 
-        if (newChapter >= 1 && newChapter <= currentChapters.value.length) {
-            currentChapter.value = newChapter;
+        while (newChapter < 1 || newChapter > chapterCount) {
+            if (newChapter < 1 && currentBook.value > 1) {
+                currentBook.value -= 1;
+                chapterCount = currentChapters.value.length;
+                newChapter += chapterCount;
+            } else if (
+                newChapter > chapterCount &&
+                currentBook.value < bible.books.length
+            ) {
+                currentBook.value += 1;
+                newChapter -= chapterCount;
+                chapterCount = currentChapters.value.length;
+            } else {
+                newChapter = newChapter < 1 ? 1 : chapterCount;
+                break;
+            }
         }
+
+        currentChapter.value = newChapter;
     }
 
     /**
@@ -120,8 +137,16 @@ export const useBibleStore = defineStore("bible", () => {
         );
     }
 
-    watch([currentBook, currentChapter], () => {
+    watch([currentBook, currentChapter], (newValues, oldValues) => {
         selectedVerses.value = [];
+
+        // Reset chapter if book has changed and current chapter is out of bounds
+        if (
+            newValues[0] !== oldValues[0] &&
+            currentChapter.value > currentChapters.value.length
+        ) {
+            currentChapter.value = 1;
+        }
     });
 
     return {
