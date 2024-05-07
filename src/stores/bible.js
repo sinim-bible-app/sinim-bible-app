@@ -11,11 +11,11 @@ export const useBibleStore = defineStore("bible", () => {
     const selectedVerses = ref([]);
 
     const currentBookName = computed(() => {
-        return bible.books[currentBook.value - 1].name;
+        return bible.books[currentBook.value - 1]?.name;
     });
 
     const currentChapters = computed(() => {
-        return bible.books[currentBook.value - 1].chapters || [];
+        return bible.books[currentBook.value - 1]?.chapters || [];
     });
 
     const currentVerses = computed(() => {
@@ -32,7 +32,7 @@ export const useBibleStore = defineStore("bible", () => {
         chapter ??= currentChapter.value;
         book ??= currentBook.value;
 
-        return bible.books[book - 1].chapters[chapter - 1][verse - 1];
+        return bible.books[book - 1]?.chapters[chapter - 1]?.[verse - 1];
     }
 
     /**
@@ -69,6 +69,10 @@ export const useBibleStore = defineStore("bible", () => {
      * @returns {void}
      */
     function toggleSelectedVerse(verse) {
+        if (verse < 1 || verse > currentVerses.value.length) {
+            return;
+        }
+
         if (!selectedVerses.value.includes(verse)) {
             selectedVerses.value.push(verse);
             return;
@@ -89,7 +93,8 @@ export const useBibleStore = defineStore("bible", () => {
      * @returns {string}
      */
     function formatVerseNumbers(verses) {
-        verses.sort((a, b) => a - b);
+        // Remove duplicates and sort ascending
+        verses = Array.from(new Set(verses)).sort((a, b) => a - b);
 
         return verses
             .reduce((acc, curr, i) => {
