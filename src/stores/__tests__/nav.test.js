@@ -1,6 +1,6 @@
 import { beforeEach, describe, it, expect } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
-import { useNavStore } from "../nav";
+import { useNavStore } from "@/stores/nav";
 
 describe("Nav Store", () => {
     let store;

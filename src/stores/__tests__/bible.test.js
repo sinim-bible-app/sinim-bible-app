@@ -1,7 +1,7 @@
 import { beforeEach, describe, it, expect, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { nextTick } from "vue";
-import { useBibleStore } from "../bible";
+import { useBibleStore } from "@/stores/bible";
 
 vi.mock("vue-i18n", () => {
     const useI18n = () => ({

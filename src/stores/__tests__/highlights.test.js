@@ -1,6 +1,6 @@
 import { beforeEach, describe, it, expect } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
-import { useHighlightsStore } from "../highlights";
+import { useHighlightsStore } from "@/stores/highlights";
 
 describe("Highlights Store", () => {
     let store;

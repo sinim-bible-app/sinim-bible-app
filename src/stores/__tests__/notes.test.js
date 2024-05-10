@@ -1,7 +1,7 @@
 import { beforeEach, describe, it, expect } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
-import { useNotesStore } from "../notes";
 import { nextTick } from "vue";
+import { useNotesStore } from "@/stores/notes";
 
 describe("Notes Store", () => {
     let store;
