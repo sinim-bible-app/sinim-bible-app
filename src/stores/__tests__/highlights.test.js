@@ -1,4 +1,3 @@
-import { beforeEach, describe, it, expect } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { useHighlightsStore } from "@/stores/highlights";
 

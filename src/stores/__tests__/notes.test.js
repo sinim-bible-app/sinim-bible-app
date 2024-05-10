@@ -1,4 +1,3 @@
-import { beforeEach, describe, it, expect } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { nextTick } from "vue";
 import { useNotesStore } from "@/stores/notes";
