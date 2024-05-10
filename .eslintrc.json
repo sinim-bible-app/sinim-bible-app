@@ -2,12 +2,10 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "vitest-globals/env": true
+    "vitest/env": true
   },
   "extends": [
     "plugin:vue/vue3-essential",
-    "plugin:vitest/recommended",
-    "plugin:vitest-globals/recommended",
     "eslint:recommended",
     "@vue/eslint-config-prettier/skip-formatting",
     "prettier"
@@ -16,6 +14,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["vue"],
+  "plugins": ["vue", "vitest"],
   "rules": {}
 }
