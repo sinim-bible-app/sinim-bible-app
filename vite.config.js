@@ -34,5 +34,6 @@ export default defineConfig({
             include: ["src/**"],
             exclude: [...coverageConfigDefaults.exclude],
         },
+        mockReset: true,
     },
 });
