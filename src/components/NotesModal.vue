@@ -19,6 +19,7 @@
             class="w-full h-32 p-2 rounded-md dark:bg-gray-500"
             placeholder="Write your notes here..."
             v-model="notesStore.selected.note.content"
+            data-testid="note-content"
         ></textarea>
     </ModalTemplate>
 </template>
