@@ -32,7 +32,7 @@ export default defineConfig({
         root: fileURLToPath(new URL("./", import.meta.url)),
         coverage: {
             include: ["src/**"],
-            exclude: [...coverageConfigDefaults.exclude],
+            exclude: [...coverageConfigDefaults.exclude, "src/main.js"],
         },
         mockReset: true,
     },
