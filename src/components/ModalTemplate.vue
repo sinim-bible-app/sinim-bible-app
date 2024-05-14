@@ -15,7 +15,10 @@
     watch(
         () => props.show,
         (show) => {
-            if (!show) return;
+            if (!show) {
+                document.activeElement.blur();
+                return;
+            }
 
             nextTick(() => {
                 document.querySelector("#modal-close")?.focus();
@@ -31,16 +34,19 @@
             aria-labelledby="modal-title"
             role="dialog"
             aria-modal="true"
+            data-testid="modal"
         >
             <div class="fixed inset-0 bg-black/75 transition-opacity"></div>
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div
                     class="flex min-h-full items-center justify-center p-4 text-center sm:p-0"
                     @click.self="toggle"
+                    data-testid="modal-container"
                 >
                     <div
                         class="relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                         @keyup.esc="toggle"
+                        data-testid="modal-content"
                     >
                         <div
                             class="bg-gray-300 dark:bg-gray-800 p-2 text-center"
@@ -69,6 +75,7 @@
                         <div
                             v-if="$slots.footer"
                             class="bg-gray-200 dark:bg-gray-700 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                            data-testid="modal-footer"
                         >
                             <slot name="footer" />
                         </div>
