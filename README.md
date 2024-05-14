@@ -1,5 +1,7 @@
 # Sinim Bible App
 
+[![Tests](https://github.com/sinim-bible-app/sinim-bible-app/actions/workflows/tests.yml/badge.svg)](https://github.com/sinim-bible-app/sinim-bible-app/actions/workflows/tests.yml)
+
 Single file, web-based, Bible application designed for offline use.
 
 ## Project Goals
