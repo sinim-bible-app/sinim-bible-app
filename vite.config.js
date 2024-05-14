@@ -33,6 +33,7 @@ export default defineConfig({
         coverage: {
             include: ["src/**"],
             exclude: [...coverageConfigDefaults.exclude, "src/main.js"],
+            reporter: [...coverageConfigDefaults.reporter, "lcov"],
         },
         mockReset: true,
     },
