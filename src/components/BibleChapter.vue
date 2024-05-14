@@ -14,7 +14,7 @@
     <div class="flex-grow overflow-y-auto p-3">
         <span
             class="text-6xl leading-8 float-left fond-bold m-2 mb-3"
-            data-test="chapter-number"
+            data-testid="chapter-number"
         >
             {{ n(chapter) }}
         </span>

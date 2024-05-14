@@ -58,15 +58,17 @@ describe("BibleVerse", () => {
     });
 
     it("conditionally renders the verse number", async () => {
-        const number = wrapper.get('[data-test="verse-number"]');
+        const number = wrapper.get('[data-testid="verse-number"]');
         expect(number.text()).toBe(verseNumber.toString());
 
         await wrapper.setProps({ verseNumber: 1 });
-        expect(wrapper.find('[data-test="verse-number"]').exists()).toBe(false);
+        expect(wrapper.find('[data-testid="verse-number"]').exists()).toBe(
+            false,
+        );
     });
 
     it("toggles selected verse on click", async () => {
-        const verse = wrapper.find('[data-test="verse-content"]');
+        const verse = wrapper.find('[data-testid="verse-content"]');
         let classes = verse.classes();
         expect(classes).not.toContain("bg-gray-300");
 
@@ -93,7 +95,7 @@ describe("BibleVerse", () => {
     });
 
     it("applies correct user highlight", () => {
-        const classes = wrapper.find('[data-test="verse-content"]').classes();
+        const classes = wrapper.find('[data-testid="verse-content"]').classes();
         expect(classes).toContain(highlight);
     });
 });

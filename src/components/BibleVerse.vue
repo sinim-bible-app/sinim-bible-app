@@ -56,7 +56,7 @@
         <sup
             v-if="verseNumber > 1"
             class="mr-1 text-red-700 dark:text-red-500"
-            data-test="verse-number"
+            data-testid="verse-number"
         >
             {{ n(verseNumber) }}
         </sup>
@@ -65,7 +65,7 @@
             class="inline h-4 mx-1 text-blue-700 dark:text-blue-500"
             @click.stop="setNote"
         />
-        <span :class="classes" data-test="verse-content">
+        <span :class="classes" data-testid="verse-content">
             {{ verse.trim() }}
         </span>
     </div>

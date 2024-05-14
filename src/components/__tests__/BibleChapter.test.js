@@ -28,7 +28,7 @@ describe.concurrent("BibleChapter", () => {
     });
 
     it("displays the chapter number correctly", () => {
-        const chapterDisplay = wrapper.get('[data-test="chapter-number"]');
+        const chapterDisplay = wrapper.get('[data-testid="chapter-number"]');
         expect(chapterDisplay.text()).toBe("1");
     });
 
