@@ -23,7 +23,7 @@
         legacy: true,
     });
 
-    /** @return {void} */
+    /** @returns {void} */
     function copyVerses() {
         copy(bibleStore.getFormattedVerses());
 
@@ -32,14 +32,14 @@
 
     const { share, isSupported: isShareSupported } = useShare();
 
-    /** @return {void} */
+    /** @returns {void} */
     function shareVerses() {
         share({ text: bibleStore.getFormattedVerses() });
 
         bibleStore.clearSelectedVerses();
     }
 
-    /** @return {void} */
+    /** @returns {void} */
     function addNote() {
         notesStore.select(
             bibleStore.currentBook,
@@ -80,17 +80,20 @@
                 :action="copyVerses"
                 :disabled="!isCopySupported"
                 :label="t('actions.copy')"
+                data-testid="copy-button"
             />
             <IconButton
                 :icon="PencilSquareIcon()"
                 :action="addNote"
                 :label="t('actions.note')"
+                data-testid="note-button"
             />
             <IconButton
                 :icon="ShareIcon()"
                 :action="shareVerses"
                 :disabled="!isShareSupported"
                 :label="t('actions.share')"
+                data-testid="share-button"
             />
         </div>
     </Teleport>
