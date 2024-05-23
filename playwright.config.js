@@ -25,7 +25,6 @@ export default defineConfig({
     use: {
         baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || undefined,
         trace: "on-first-retry",
-        // offline: !!process.env.CI /* Run offline in CI */,
     },
     projects: [
         {
