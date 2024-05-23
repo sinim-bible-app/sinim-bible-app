@@ -8,3 +8,6 @@
 .editorconfig export-ignore
 .eslintrc.json export-ignore
 .prettierrc.json export-ignore
+codecov.yml export-ignore
+playwright.config.js export-ignore
+e2e/ export-ignore
