@@ -3,10 +3,10 @@ name: "Code Standards"
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   code-standards:

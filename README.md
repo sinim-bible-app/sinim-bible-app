@@ -1,7 +1,7 @@
 # Sinim Bible App
 
 [![Tests](https://github.com/sinim-bible-app/sinim-bible-app/actions/workflows/tests.yml/badge.svg)](https://github.com/sinim-bible-app/sinim-bible-app/actions/workflows/tests.yml)
-[![Coverage Status](https://coveralls.io/repos/github/sinim-bible-app/sinim-bible-app/badge.svg?branch=main)](https://coveralls.io/github/sinim-bible-app/sinim-bible-app?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/sinim-bible-app/sinim-bible-app/badge.svg?branch=master)](https://coveralls.io/github/sinim-bible-app/sinim-bible-app?branch=master)
 
 Single file, web-based, Bible application designed for offline use.
 
