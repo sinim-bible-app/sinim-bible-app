@@ -62,6 +62,7 @@ Here's a brief overview of the main tools and libraries we use:
 - [**ESLint**](https://eslint.org/): A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.
 - [**Prettier**](https://prettier.io/): An opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
 - [**Vitest**](https://vitest.dev/): A Vite-native unit test framework. It's fast, performant, and works out of the box for Vite projects.
+- [**Playwright**](https://playwright.dev/): A powerful end-to-end testing framework that supports multiple browsers. It enables reliable and fast testing of web applications, ensuring they work as expected across different environments.
 
 ## Running/Building the Project
 
