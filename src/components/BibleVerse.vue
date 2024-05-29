@@ -66,7 +66,7 @@
             @click.stop="setNote"
         />
         <span :class="classes" data-testid="verse-content">
-            {{ verse.trim() }}
+            {{ verse }}
         </span>
     </div>
 </template>
