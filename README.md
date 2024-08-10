@@ -5,6 +5,9 @@
 
 Single file, web-based, Bible application designed for offline use.
 
+> Isaiah 49:12 _Behold, these shall come from far: and, lo, these from the north
+> and from the west; and these from the land of Sinim._
+
 ## Project Goals
 
 - Provide an electronic Bible that **never** uses the Internet (doing so could compromise the user).
